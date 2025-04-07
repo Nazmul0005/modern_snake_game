@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Snake Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #1a1a2e;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        .container {
+            position: relative;
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        #game-board {
+            background-color: #16213e;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .score-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+        
+        .score-box {
+            background-color: #0f3460;
+            border-radius: 8px;
+            padding: 12px 20px;
+            min-width: 120px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .score-box h3 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .score-box span {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .controls {
+            display: flex;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        
+        button {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            background-color: #d63447;
+            transform: translateY(-2px);
+        }
+        
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(15, 52, 96, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            display: none;
+            min-width: 300px;
+        }
+        
+        #game-over h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #e94560;
+        }
+        
+        #game-over p {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        
+        .mobile-controls {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .mobile-controls .row {
+            display: flex;
+            justify-content: center;
+            margin: 5px 0;
+        }
+        
+        .mobile-controls button {
+            width: 65px;
+            height: 65px;
+            padding: 0;
+            font-size: 24px;
+            margin: 5px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-controls {
+                display: block;
+            }
+            
+            #game-board {
+                max-width: 90vw;
+                max-height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="score-container">
+            <div class="score-box">
+                <h3>SCORE</h3>
+                <span id="score">0</span>
+            </div>
+            <div class="score-box">
+                <h3>HIGH SCORE</h3>
+                <span id="high-score">0</span>
+            </div>
+        </div>
+        
+        <canvas id="game-board"></canvas>
+        
+        <div class="controls">
+            <button id="start-btn">Start</button>
+            <button id="pause-btn">Pause</button>
+            <button id="restart-btn">Restart</button>
+        </div>
+        
+        <div class="mobile-controls">
+            <div class="row">
+                <button id="up-btn">↑</button>
+            </div>
+            <div class="row">
+                <button id="left-btn">←</button>
+                <button id="right-btn">→</button>
+            </div>
+            <div class="row">
+                <button id="down-btn">↓</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="game-over">
+        <h1>Game Over</h1>
+        <p>Your Score: <span id="final-score">0</span></p>
+        <p>High Score: <span id="final-high-score">0</span></p>
+        <button id="play-again-btn">Play Again</button>
+    </div>
+    
+    <script src="js/game.js"></script>
+</body>
+</html> 
